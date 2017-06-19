@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold - Django</title>
+</head>
+<body>
+   <h1>Ninja Gold</h1>
+   <p>Your Gold: {{ request.session.gold}}</p>
+   <br>
+   <br>
+   <form action="/farm" method='POST'>
+        {% csrf_token %}
+        <label for="farm">Farm</label>
+        <p>(earns 10-20 golds)</p>
+        <input type="submit" value="Find Gold!">
+   </form>
+   <form action="/cave" method='POST'>
+        {% csrf_token %}
+        <label for="cave">Cave</label>
+        <p>(earns 5-10 golds)</p>
+        <input type="submit" value="Find Gold!">
+   </form>
+   <form action="/house" method='POST'>
+        {% csrf_token %}
+        <label for="house">House</label>
+        <p>(earns 2-5 golds)</p>
+        <input type="submit" value="Find Gold!">
+   </form>
+   <form action="/casino" method='POST'>
+        {% csrf_token %}
+        <label for="casino">Casino</label>
+        <p>(earns/takes 0-50 golds)</p>
+        <input type="submit" value="Find Gold!">
+   </form>
+   <h3>Activities</h3>
+   <div class="log">
+
+        {{ request.session.log | safe}}
+
+   </div>
+   <form action="/reset">
+    {% csrf_token %}
+        <input type="submit" value="Reset">
+   </form>
+</body>
+</html>
